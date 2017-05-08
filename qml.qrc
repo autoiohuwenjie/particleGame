@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>fireShader.qml</file>
+        <file>vertexAndFragment.qml</file>
+        <file>waveEffect.qml</file>
+        <file>vertTexShader.qml</file>
+    </qresource>
+</RCC>
