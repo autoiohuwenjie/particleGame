@@ -5,8 +5,6 @@
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
-
-
     QQuickView view;
     view.setSource(QUrl("qrc:/main.qml"));
     //view.setSource(QUrl("qrc:/BallShoting.qml"));
@@ -18,6 +16,7 @@ int main(int argc, char *argv[])
     ballView.setMaximumSize(QSize(1024,768));
     ballView.setMinimumSize(QSize(1024,768));
     ballView.setSource(QUrl("qrc:/BallShoting.qml"));
+    //ballView.setSource(QUrl("qrc:/common/BallShaderEffect.qml"));
     ballView.setPosition(400,150);
     ballView.show();
     return app.exec();

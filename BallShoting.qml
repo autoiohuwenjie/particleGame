@@ -17,7 +17,6 @@ Item {
             source: "qrc:/images/ballGame/direction.png"
         }
     }
-
     Component {
         id: myKnife
         Image {
@@ -122,9 +121,6 @@ Item {
             event.accepted = true;//防止把信号继续传递下去
         }
     }
-    //    MouseArea{
-    //        anchors.fill: parent
-    //        onClicked: {helmAndKnife.myAngle += -3}
-    //    }
+
 }
 

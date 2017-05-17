@@ -8,7 +8,7 @@
         <file>LeafStory.qml</file>
         <file>ClickEffect.qml</file>
         <file>common/BallShaderEffect.qml</file>
-        <file>common/BallShotingBackGround.qml</file>
         <file>common/BallShotingBackGroundForm.ui.qml</file>
+        <file>common/BigBallShaderEffect.qml</file>
     </qresource>
 </RCC>
