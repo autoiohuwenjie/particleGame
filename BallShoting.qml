@@ -4,7 +4,55 @@ import "."
 Item {
     id: root
     width: 1024
-    height: 1024
+    height: 768
+    Image{
+        id: backgroundPic
+        width: 1024
+        height: 768
+        source: "qrc:/images/ballGame/ballBackground.jpg"
+        Image {
+            id: direction
+            anchors.centerIn: parent
+            scale: 1.2
+            source: "qrc:/images/ballGame/direction.png"
+        }
+    }
+
+    Component {
+        id: myKnife
+        Image {
+            id: knifeImage
+            scale: 0.2
+            x: 380
+            y: 560
+            source: "qrc:/images/ballGame/littleknife.png"
+            property real targetX: 512
+            property real targetY: -100
+            property real moveTime: 3000
+            function go(){
+                knifeImage.enabled = true;
+                animX.start();
+                animY.start();
+                rotationAnim.start();
+            }
+            NumberAnimation on x{id: animX; to:knifeImage.targetX; duration: knifeImage.moveTime; easing.type: Easing.OutQuad; running:false}
+            NumberAnimation on y{id: animY; to:knifeImage.targetY; duration: knifeImage.moveTime; easing.type: Easing.OutQuad; running:false}
+            SequentialAnimation on rotation{
+                id:rotationAnim;
+                NumberAnimation  { to:3240; duration: 1500}
+                NumberAnimation  { to:0; duration: 1500}
+                loops: Animation.Infinite
+
+            }
+            Timer {
+                interval: knifeImage.moveTime + 500;
+                running: true
+                onTriggered: knifeImage.destroy();
+            }
+        }
+    }
+
+
     Item {
         id: helmAndKnife
         x: 412
@@ -23,7 +71,6 @@ Item {
             clip: true
             source: "../images/ballGame/deathKnife.png"
         }
-
         Image {
             id: helm
             x: 50
@@ -38,16 +85,34 @@ Item {
             if(helmAndKnife.myAngle <= 87 ||helmAndKnife.myAngle >= -87 )
                 helmAndKnife.myAngle += angle
         }
+        //创造泡泡
+        function createBubble(num){
+            for(var i = 0; i <= num; i++)
+            {
+
+            }
+        }
+        //开火
+        function fire(angle) {
+            var obj = myKnife.createObject(root);//(400,-200)这是调整好的基础位置，在舵的中心
+            var arcAngle = Math.PI / 180.0 *angle
+            obj.targetX = 380 + Math.sin(arcAngle) * 640;
+            obj.targetY = 560 - Math.abs(Math.cos(arcAngle)) *640;
+            obj.go();
+        }
         Keys.onPressed: {
             switch(event.key) {
             case Qt.Key_Left:
-                helmAndKnife.myAngle -= 5;
+                if(helmAndKnife.myAngle >= -85 )
+                    helmAndKnife.myAngle -= 5;
                 break;
             case Qt.Key_Right:
-                helmAndKnife.myAngle += 5;
+                if(helmAndKnife.myAngle <= 85 )
+                    helmAndKnife.myAngle += 5;
                 break;
-            case Qt.Key_Up:
-                helmAndKnife.myAngle -= 10;
+            case Qt.Key_Up://||Qt.Key_Space
+                fire(helmAndKnife.myAngle);
+
                 break;
             case Qt.Key_Down:
                 helmAndKnife.myAngle += 10;
