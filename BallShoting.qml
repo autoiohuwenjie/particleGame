@@ -51,8 +51,6 @@ Item {
             }
         }
     }
-
-
     Item {
         id: helmAndKnife
         x: 412
@@ -80,7 +78,6 @@ Item {
             source: "../images/ballGame/helm.png"
         }
         transform: Rotation{origin.x:100; origin.y: 150; angle: helmAndKnife.myAngle}//范围为-90到90
-
         function rotate(angle){
             if(helmAndKnife.myAngle <= 87 ||helmAndKnife.myAngle >= -87 )
                 helmAndKnife.myAngle += angle
@@ -96,8 +93,8 @@ Item {
         function fire(angle) {
             var obj = myKnife.createObject(root);//(400,-200)这是调整好的基础位置，在舵的中心
             var arcAngle = Math.PI / 180.0 *angle
-            obj.targetX = 380 + Math.sin(arcAngle) * 640;
-            obj.targetY = 560 - Math.abs(Math.cos(arcAngle)) *640;
+            obj.targetX = 380 + Math.sin(arcAngle) * 1080;
+            obj.targetY = 560 - Math.abs(Math.cos(arcAngle)) * 1080;
             obj.go();
         }
         Keys.onPressed: {
@@ -110,9 +107,11 @@ Item {
                 if(helmAndKnife.myAngle <= 85 )
                     helmAndKnife.myAngle += 5;
                 break;
-            case Qt.Key_Up://||Qt.Key_Space
+            case Qt.Key_Up:
                 fire(helmAndKnife.myAngle);
-
+                break;
+            case Qt.Key_Space:
+                fire(helmAndKnife.myAngle);
                 break;
             case Qt.Key_Down:
                 helmAndKnife.myAngle += 10;
