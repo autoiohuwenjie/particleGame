@@ -13,5 +13,15 @@
         <file>images/leaf/realLeaf2.png</file>
         <file>images/leaf/realLeaf3.png</file>
         <file>images/leaf/realLeaf4.png</file>
+        <file>images/ballGame/ball.png</file>
+        <file>images/ballGame/deathKnife.png</file>
+        <file>images/ballGame/direction.png</file>
+        <file>images/ballGame/failure.png</file>
+        <file>images/ballGame/helm.png</file>
+        <file>images/ballGame/littleknife.png</file>
+        <file>images/ballGame/redFork.png</file>
+        <file>images/ballGame/smallball.png</file>
+        <file>images/ballGame/success.png</file>
+        <file>images/ballGame/ballBackground.jpg</file>
     </qresource>
 </RCC>
