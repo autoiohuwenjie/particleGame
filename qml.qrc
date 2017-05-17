@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>FallWaterEffect.qml</file>
+        <file>FireworkEffect.qml</file>
+        <file>ShotPlane.qml</file>
+        <file>BallShoting.qml</file>
+        <file>LeafStory.qml</file>
+        <file>ClickEffect.qml</file>
+    </qresource>
+</RCC>

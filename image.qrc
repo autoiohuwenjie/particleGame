@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/glowdot.png</file>
+        <file>images/welcome.png</file>
+        <file>images/finalfrontier.png</file>
+        <file>images/fuzzydot.png</file>
+        <file>images/meteor.png</file>
+        <file>images/rocket.png</file>
+        <file>images/rocket2.png</file>
+        <file>images/star.png</file>
+        <file>images/leaf/backgroundLeaves.jpg</file>
+        <file>images/leaf/realLeaf1.png</file>
+        <file>images/leaf/realLeaf2.png</file>
+        <file>images/leaf/realLeaf3.png</file>
+        <file>images/leaf/realLeaf4.png</file>
+    </qresource>
+</RCC>
