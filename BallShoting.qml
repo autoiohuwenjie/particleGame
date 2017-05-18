@@ -1,4 +1,5 @@
 import QtQuick 2.5
+import QtQuick.Controls 1.4
 import "./common"
 import "."
 Item {
@@ -20,7 +21,6 @@ Item {
             var component = Qt.createComponent("./common/BallShaderEffect.qml");//该函数需要提供完整路径
             var sprite = component.createObject(root);
             root.bubbles[i]= sprite;
-            console.log()
             sprite.x = Math.random() * 1024;
             sprite.y = Math.random()* 668;
             var i = Math.random()*10;
@@ -87,6 +87,16 @@ Item {
                 onTriggered: knifeImage.destroy();
             }
         }
+    }
+    Column{
+      id: myColunm
+      anchors.left: root.left
+      anchors.bottom: root.bottom
+      Button{
+          id: returnButton
+          objectName: "returnButton"
+          text: "return"
+      }
     }
     Item {
         id: helmAndKnife

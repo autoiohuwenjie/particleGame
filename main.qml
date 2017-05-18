@@ -17,17 +17,20 @@ Item {
             width: 640
             height: 540
             Image{
-               source:"qrc:/images/welcome.png"
+                source:"qrc:/images/welcome.png"
             }
-                Column{
-                    anchors.centerIn: parent
-                    spacing: 10
+            Column{
+                anchors.centerIn: parent
+                spacing: 10
                 Button{
                     id: ballButton
+                    objectName: "ballButton"
                     text:"Ball Shoting"
                     width: 200
                     x:100
-                    onClicked: {}
+                    onClicked: {
+
+                    }
                 }
                 Button{
                     id: planeButton
@@ -76,8 +79,8 @@ Item {
         visible: false
         onVisibleChanged: {
             if(!visible){
-               leavesButton.enabled = true;
-               menuAndPicture.visible = true;
+                leavesButton.enabled = true;
+                menuAndPicture.visible = true;
             }
         }
 
