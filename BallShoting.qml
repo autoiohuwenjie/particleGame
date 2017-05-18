@@ -5,6 +5,45 @@ Item {
     id: root
     width: 1024
     height: 768
+    property var bubbles: []
+    //创造泡泡
+    Timer{
+        id: bubbleCreateTime
+        interval: 600
+        running: true
+        repeat: true
+        onTriggered: createBubble(10)
+    }
+
+    function createBubble(num){
+        for(var i = 0; i <= num; i++)
+        {
+            var component = Qt.createComponent("./common/BallShaderEffect.qml");//该函数需要提供完整路径
+            var sprite = component.createObject(root);
+            root.bubbles[i]= sprite;
+            console.log(root.bubbles[i])
+            sprite.x = Math.random() * 1024;
+            sprite.y = Math.random()* 668;
+            var i = Math.random()*10;
+            if(i <2){
+                sprite.ballColor = "green"
+            }
+            else if(2 < i && i < 4){
+                sprite.ballColor = "red"
+            }
+            else if(4 < i && i < 6){                                              \
+                sprite.ballColor = "yellow"
+            }
+            else if(6 < i && i < 8){
+                sprite.ballColor = "pink"
+            }
+            else{
+                sprite.ballColor = "blue"
+            }
+            sprite.destroy(6000);
+        }
+    }
+
     Image{
         id: backgroundPic
         width: 1024
@@ -80,13 +119,6 @@ Item {
         function rotate(angle){
             if(helmAndKnife.myAngle <= 87 ||helmAndKnife.myAngle >= -87 )
                 helmAndKnife.myAngle += angle
-        }
-        //创造泡泡
-        function createBubble(num){
-            for(var i = 0; i <= num; i++)
-            {
-
-            }
         }
         //开火
         function fire(angle) {
