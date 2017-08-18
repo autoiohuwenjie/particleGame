@@ -7,5 +7,6 @@
         <file>vertTexShader.qml</file>
         <file>sunRotation.qml</file>
         <file>fireFog.qml</file>
+        <file>ringCut.qml</file>
     </qresource>
 </RCC>

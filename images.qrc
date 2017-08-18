@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>image/texture.png</file>
+        <file>image/speedline.png</file>
+        <file>image/speedLine2.png</file>
     </qresource>
 </RCC>

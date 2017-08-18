@@ -13,7 +13,9 @@ int main(int argc, char *argv[])
     //view.setSource(QUrl("qrc:/vertTexShader.qml"));
     //view.setSource(QUrl("qrc:/fireShader.qml"));
     //view.setSource(QUrl("qrc:/sunRotation.qml"));
-    view.setSource(QUrl("qrc:/fireFog.qml"));
+    //view.setSource(QUrl("qrc:/fireFog.qml"));
+
+    view.setSource(QUrl("qrc:/ringCut.qml"));
     view.show();
 
     return app.exec();
