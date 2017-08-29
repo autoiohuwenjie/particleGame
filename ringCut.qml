@@ -1,30 +1,30 @@
 import QtQuick 2.5
 
 Item{
-    width: 688*1.2; height: 688*1.2;
+    width: 688; height: 688;
     Image {
         id: sourceImage
-        source: "qrc:/image/speedline.png"
+        source: "qrc:/image/speedLine1.png"
         visible: false
     }
     Rectangle{
-        width: 688; height:  width;
-        anchors.centerIn: parent
+        width: 348; height:  348;
+        anchors.verticalCenter: parent.verticalCenter
         color: "#333333"
     }
     ShaderEffect{
         id: genieEffect
-        width: 688; height: width;
-        anchors.centerIn: parent
+        width: 348; height: 348;
+        anchors.verticalCenter: parent.verticalCenter
         property variant source: sourceImage
         property real mRot: 90;
-        mesh: GridMesh { resolution: Qt.size(32, 32)}
-//        SequentialAnimation on mRot {
-//            NumberAnimation { to: 10; duration: 1800; easing.type:Easing.InOutSine }
-//            PauseAnimation { duration: 1000 }
-//            NumberAnimation { to: 160; duration: 1800; easing.type:Easing.InOutSine }
-//            loops:Animation.Infinite;
-//        }
+        mesh: GridMesh { resolution: Qt.size(1, 1)}
+        SequentialAnimation on mRot {
+            NumberAnimation { to: 10; duration: 1800; easing.type:Easing.InOutSine }
+            PauseAnimation { duration: 1000 }
+            NumberAnimation { to: 160; duration: 1800; easing.type:Easing.InOutSine }
+            loops:Animation.Infinite;
+        }
 
         fragmentShader: "
         uniform lowp float mRot;
@@ -32,7 +32,7 @@ Item{
         uniform sampler2D source;
         void main() {
           lowp float rad = 3.1419526 * mRot / 180.0;
-          lowp float coordRad = atan((0.5 - qt_TexCoord0.x),(0.5 - qt_TexCoord0.y));
+          lowp float coordRad = atan((1.0 - qt_TexCoord0.x),(0.5 - qt_TexCoord0.y));
           lowp float factor = 1.0;
           if(rad <= coordRad && rad > coordRad - 0.02)
           {

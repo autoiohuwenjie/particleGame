@@ -15,7 +15,9 @@ int main(int argc, char *argv[])
     //view.setSource(QUrl("qrc:/sunRotation.qml"));
     //view.setSource(QUrl("qrc:/fireFog.qml"));
 
-    view.setSource(QUrl("qrc:/ringCut.qml"));
+    //view.setSource(QUrl("qrc:/ringCut.qml"));
+    //view.setSource(QUrl("qrc:/ringCutRight.qml"));
+    view.setSource(QUrl("qrc:/smoker.qml"));
     view.show();
 
     return app.exec();

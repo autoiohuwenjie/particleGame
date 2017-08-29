@@ -2,6 +2,7 @@
     <qresource prefix="/">
         <file>image/texture.png</file>
         <file>image/speedline.png</file>
-        <file>image/speedLine2.png</file>
+        <file>image/speedLine1.png</file>
+        <file>image/powerLineRed.png</file>
     </qresource>
 </RCC>

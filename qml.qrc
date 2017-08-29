@@ -8,5 +8,7 @@
         <file>sunRotation.qml</file>
         <file>fireFog.qml</file>
         <file>ringCut.qml</file>
+        <file>ringCutRight.qml</file>
+        <file>smoker.qml</file>
     </qresource>
 </RCC>
