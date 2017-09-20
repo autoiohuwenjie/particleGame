@@ -4,5 +4,7 @@
         <file>image/speedline.png</file>
         <file>image/speedLine1.png</file>
         <file>image/powerLineRed.png</file>
+        <file>image/waterLines.png</file>
+        <file>image/C.png</file>
     </qresource>
 </RCC>

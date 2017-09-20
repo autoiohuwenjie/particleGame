@@ -1,7 +1,7 @@
 import QtQuick 2.5
 
 ShaderEffect{
-    width: 640 ;height: 320;
+    width: 500 ;height: 250;
     transform: Rotation { origin.x: width/2; origin.y: height/2; angle: 180}
     property real iGlobalTime: 0.0
     SequentialAnimation on iGlobalTime {
@@ -60,12 +60,13 @@ void main()
     q.y *= 2.;
     float strength = floor(q.x+1.);
     float T3 = max(3.,1.25*strength)*iGlobalTime;
-    q.x = mod(q.x,1.)-0.5;
+    //q.x = mod(q.x,1.)-0.5;
+    q.x = q.x - 2.5;
     q.y -= 0.25;
     float n = fbm(strength*q - vec2(0,T3));
     float c = 1. - 16. * pow( max( 0., length(q*vec2(1.8+q.y*1.5,.75) ) - n * max( 0., q.y+.25 ) ),1.2 );
-//	float c1 = n * c * (1.5-pow(1.25*uv.y,4.));
-    float c1 = n * c * (1.5-pow(2.50*uv.y,4.));
+    float c1 = n * c * (1.5-pow(1.25*uv.y,4.));
+    //float c1 = n * c * (1.5-pow(2.50*uv.y,4.));
     c1=clamp(c1,0.,1.);
 
     vec3 col = vec3(1.5*c1, 1.5*c1*c1*c1, c1*c1*c1*c1*c1*c1);
@@ -79,6 +80,7 @@ void main()
 
     float a = c * (1.-pow(uv.y,3.));
     gl_FragColor = vec4( mix(vec3(0.),col,a), 1.0);
+    //gl_FragColor = vec4(col, 1.0);
 }
 
 "
