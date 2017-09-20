@@ -1,21 +1,24 @@
-import QtQuick 2.5
+import QtQuick 2.8
 
 Item{
     //ringCut边缘波动函数例子
-    width: 688; height: 688;
+    property int mWidth: 500
+    property int mHeight: 500
+    property bool mVisible: true
+    property int mX
+    property int mY
+    property int mZ
+    visible: mVisible
+    x: mX; y: mY; z: mZ
+    width: mWidth; height: mHeight
     Image {
         id: sourceImage
         source: "qrc:/image/powerLineRed.png"
         visible: false
     }
-    Rectangle{
-        width: 348; height:  348;
-        anchors.verticalCenter: parent.verticalCenter
-        color: "#333333"
-    }
     ShaderEffect{
         id: genieEffect
-        width: 348; height: 348;
+        width: mWidth; height: mWidth;
         anchors.verticalCenter: parent.verticalCenter
 
         property variant source: sourceImage
@@ -24,7 +27,6 @@ Item{
         property real mRRot: tranfromAngle(mRot)
 
         property real amplitude: 0.06;
-        property real cycle: 0;
         property real offsetZ: tranfromAngle(20);
 
         function tranfromAngle(angle) {
@@ -33,9 +35,9 @@ Item{
 
         mesh: GridMesh { resolution: Qt.size(1, 1)}
         SequentialAnimation on mRot {
-            NumberAnimation { to: 30; duration: 5000; easing.type: Easing.InOutSine}
+            NumberAnimation { to: 60; duration: 5000; easing.type: Easing.InOutSine}
             PauseAnimation { duration: 200 }
-            NumberAnimation { to: 130; duration: 5000; easing.type: Easing.InOutSine}
+            NumberAnimation { to: 90; duration: 5000; easing.type: Easing.InOutSine}
             loops: Animation.Infinite;
         }
         onMRotChanged: {
@@ -52,17 +54,12 @@ Item{
                     NumberAnimation {target: genieEffect; property: "offsetZ"; to: 8; duration: 900; easing.type: Easing.InOutSine}
                     NumberAnimation {target: genieEffect; property: "offsetZ"; to: 0; duration: 1000; easing.type: Easing.InOutSine}
                 }
-                SequentialAnimation {
-                    ScriptAction {script: {genieEffect.amplitude = 0.06}}
-                    NumberAnimation {target: genieEffect; property: "amplitude"; to: 0; duration: 5600}
-                }
             }
         }
 
         fragmentShader: "
         uniform lowp float mRRot;
         uniform lowp float amplitude;
-        uniform lowp float cycle;
         uniform lowp float offsetZ;
 
 
@@ -72,9 +69,9 @@ Item{
           lowp float rad = mRRot - amplitude * sin( 8.0 * distance(vec2(0.0, 0.5), vec2(qt_TexCoord0.x, qt_TexCoord0.y)) + offsetZ);
           lowp float coordRad = atan((qt_TexCoord0.x),(qt_TexCoord0.y-0.5));
           lowp float factor = 1.0;
-          if( coordRad < rad && coordRad >= rad - 0.01)
+          if( coordRad < rad && coordRad >= rad - 0.006)
           {
-            factor = (mRRot - coordRad) * 16.0 ;
+            factor = (mRRot - coordRad) * 12.0 ;
           }
           if(rad < coordRad)
           {

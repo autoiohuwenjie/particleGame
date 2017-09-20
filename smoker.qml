@@ -1,7 +1,7 @@
-import QtQuick 2.0
-
+import QtQuick 2.8
 
 ShaderEffect {
+    id: shader
     width: 600
     height: 600
     property real mwidth: width
@@ -11,29 +11,25 @@ ShaderEffect {
     property real speedY: 0.4
     property real alpha: 1.0
     property real time: 0.0
+    property real radius: 0.5
 
-//    SequentialAnimation on time {
-//        id: anim;
-//        NumberAnimation { to: 10; duration: 6000;}
-//        loops: Animation.Infinite
-//    }
-
-    Timer {
-        interval: 90
-        repeat: true
-        running: true
-        onTriggered: { ++time }
-    }
+            Timer {
+                interval: 200
+                repeat: true
+                running: true
+                onTriggered: { ++shader.time }
+            }
 
     fragmentShader:"
-          uniform mediump float mwidth;
-          uniform mediump float mheight;
-          uniform mediump float time;
-          uniform mediump float alpha;
-          uniform mediump float speedX;
-          uniform mediump float speedY;
-          uniform mediump float shift;
-          varying mediump vec2 qt_TexCoord0;
+          uniform lowp float mwidth;
+          uniform lowp float mheight;
+          uniform lowp float time;
+          uniform lowp float alpha;
+          uniform lowp float speedX;
+          uniform lowp float speedY;
+          uniform lowp float shift;
+          uniform lowp float radius;
+          varying lowp vec2 qt_TexCoord0;
 
           float rand(vec2 n) {
             return fract(cos(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
@@ -57,6 +53,18 @@ ShaderEffect {
 
           void main() {
 
+            float factor = 1.0;
+
+            if( distance(qt_TexCoord0, vec2(0.5, 0.5)) > radius) {
+              discard;
+            }
+
+            if((radius - distance(qt_TexCoord0, vec2(0.5, 0.5))) < 0.02) {
+              factor = 60.0 *(0.02 - (distance(qt_TexCoord0, vec2(0.5, 0.5)) - (radius - 0.02)));
+              gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+            }
+
+
             const vec3 c1 = vec3(126.0/255.0, 0.0/255.0, 97.0/255.0);
             const vec3 c2 = vec3(173.0/255.0, 0.0/255.0, 161.4/255.0);
             const vec3 c3 = vec3(0.2, 0.0, 0.0);
@@ -69,7 +77,13 @@ ShaderEffect {
             vec2 r = vec2(fbm(p + q + time * speedX - p.x - p.y), fbm(p + q - time * speedY));
             vec3 c = mix(c1, c2, fbm(p + r)) + mix(c3, c4, r.x) - mix(c5, c6, r.y);
             float grad = qt_TexCoord0.y * 600.0/ mwidth;
-            gl_FragColor = vec4(c * cos(shift * qt_TexCoord0.y / mheight * 600.0), 1.0);
+            if(factor < 1.0) {
+              gl_FragColor = vec4(c * cos(shift * qt_TexCoord0.y / mheight * 600.0), 1.0) * vec4(factor, factor, factor, factor) + vec4(1.0 - factor, 1.0 - factor, 1.0 - factor, 1.0 - factor);
+            }else {
+              gl_FragColor = vec4(c * cos(shift * qt_TexCoord0.y / mheight * 600.0), 1.0);
+            }
             gl_FragColor.xyz *= 1.0-grad;
+
           }"
+
 }

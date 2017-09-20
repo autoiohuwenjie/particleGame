@@ -4,7 +4,7 @@ Item{
     width: 688; height: 688;
     Image {
         id: sourceImage
-        source: "qrc:/image/speedLine1.png"
+        source: "qrc:/image/speedline.png"
         visible: false
     }
     Rectangle{
@@ -37,11 +37,6 @@ Item{
           if(rad <= coordRad && rad > coordRad - 0.02)
           {
             factor = (coordRad - rad) * 50.0 ;
-            //factor = 0.1;
-          }
-          else
-          {
-            factor = 1.0;
           }
           if(rad > coordRad)
           {
