@@ -19,7 +19,7 @@ Rectangle{
         anchors.centerIn: parent
         property variant source: sourceImage
         property real minimize: 0.0 ;
-        mesh: GridMesh { resolution: Qt.size(16, 16)}
+        mesh: GridMesh { resolution: Qt.size(1, 1)}
         SequentialAnimation on minimize {
             NumberAnimation { to: 1.0; duration: 1800; easing.type:Easing.InOutSine }
             PauseAnimation { duration: 1000 }

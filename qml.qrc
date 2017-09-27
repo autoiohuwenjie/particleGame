@@ -11,5 +11,8 @@
         <file>smoker.qml</file>
         <file>Fps.qml</file>
         <file>Trapezium.qml</file>
+        <file>GradualRing.qml</file>
+        <file>ringCutCircle.qml</file>
+        <file>TrapeziumNew.qml</file>
     </qresource>
 </RCC>

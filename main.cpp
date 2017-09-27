@@ -21,8 +21,9 @@ int main(int argc, char *argv[])
     //view.setSource(QUrl("qrc:/ringCutRight.qml"));//有波动的
 
     //view.setSource(QUrl("qrc:/smoker.qml"));
+    //view.setSource(QUrl("qrc:/ringCutCircle.qml"));
+    view.setSource(QUrl("qrc:/Trapezium.qml"));
     //view.setSource(QUrl("qrc:/waveEffect.qml"));
-    //view.setSource(QUrl("qrc:/Trapezium.qml"));
     view.show();
 
     return app.exec();
