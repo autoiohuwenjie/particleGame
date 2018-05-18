@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>common/Particle.qml</file>
+        <file>images/fire.png</file>
+        <file>images/fireWood.png</file>
+        <file>images/glowdot.png</file>
+        <file>images/powerDral.png</file>
+        <file>images/powerPointer.png</file>
+    </qresource>
+</RCC>
